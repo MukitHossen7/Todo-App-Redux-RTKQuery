@@ -1,7 +1,15 @@
+import TaskCard from "@/components/task/TaskCard";
 import { TaskModel } from "@/components/task/TaskModel";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import type { ITasks } from "@/interface/tasks.interface/tasks.interface";
+import { useGetTasksQuery } from "@/redux/api/baseapi";
 
 const Task = () => {
+  const { data, error, isLoading } = useGetTasksQuery(undefined);
+  console.log(data, error, isLoading);
+  if (isLoading) {
+    return <h1>Loading....</h1>;
+  }
   return (
     <div className="py-10">
       <div className="flex max-w-2xl mx-auto justify-between">
@@ -15,11 +23,12 @@ const Task = () => {
         </Tabs>
         <TaskModel></TaskModel>
       </div>
-      {/* <div>
-        {tasks?.map((task: ITasks, idx: number) => {
-          return <TaskCard task={task} key={idx}></TaskCard>;
-        })}
-      </div> */}
+      <div>
+        {!isLoading &&
+          data.tasks?.map((task: ITasks, idx: number) => {
+            return <TaskCard task={task} key={idx}></TaskCard>;
+          })}
+      </div>
     </div>
   );
 };
