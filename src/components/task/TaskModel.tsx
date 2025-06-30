@@ -28,17 +28,19 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 
 import { useState } from "react";
+import { useCreateTaskMutation } from "@/redux/api/baseapi";
 
 export function TaskModel() {
   const [open, setOpen] = useState(false);
   const form = useForm();
-
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const [createTask] = useCreateTaskMutation();
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const taskData = {
       ...data,
       isCompleted: false,
     };
-    console.log(taskData);
+    const result = await createTask(taskData);
+    console.log(result);
     form.reset();
     setOpen(false);
   };
