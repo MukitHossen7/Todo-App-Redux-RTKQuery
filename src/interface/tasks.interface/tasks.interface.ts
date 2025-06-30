@@ -1,7 +1,7 @@
 export interface ITasks {
   title: string;
   description: string;
-  dueDate: Date;
+  dueDate: string;
   isCompleted: boolean;
   priority: "high" | "medium" | "low";
 }

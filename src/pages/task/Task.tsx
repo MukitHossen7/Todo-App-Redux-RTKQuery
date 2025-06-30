@@ -5,8 +5,7 @@ import type { ITasks } from "@/interface/tasks.interface/tasks.interface";
 import { useGetTasksQuery } from "@/redux/api/baseapi";
 
 const Task = () => {
-  const { data, error, isLoading } = useGetTasksQuery(undefined);
-  console.log(data, error, isLoading);
+  const { data, isLoading } = useGetTasksQuery(undefined);
   if (isLoading) {
     return <h1>Loading....</h1>;
   }

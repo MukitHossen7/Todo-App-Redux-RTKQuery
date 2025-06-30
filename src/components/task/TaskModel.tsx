@@ -34,8 +34,11 @@ export function TaskModel() {
   const form = useForm();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-
+    const taskData = {
+      ...data,
+      isCompleted: false,
+    };
+    console.log(taskData);
     form.reset();
     setOpen(false);
   };
@@ -104,29 +107,6 @@ export function TaskModel() {
                         <SelectItem value="Low">Low</SelectItem>
                         <SelectItem value="Medium">Medium</SelectItem>
                         <SelectItem value="High">High</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </FormItem>
-                )}
-              />
-              {/* dropdown user*/}
-              <FormField
-                control={form.control}
-                name="assignedTo"
-                render={({ field }) => (
-                  <FormItem className="">
-                    <FormLabel className="mt-2">AssignedTo</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select a AssignedTo" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="Mukit">Mukit</SelectItem>
                       </SelectContent>
                     </Select>
                   </FormItem>
