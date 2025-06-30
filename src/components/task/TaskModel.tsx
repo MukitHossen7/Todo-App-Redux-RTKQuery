@@ -39,7 +39,7 @@ export function TaskModel() {
       ...data,
       isCompleted: false,
     };
-    const result = await createTask(taskData);
+    const result = await createTask(taskData).unwrap();
     console.log(result);
     form.reset();
     setOpen(false);
